@@ -140,6 +140,21 @@ export const rules: Rules = {
     }
   },
 
+  /** rule no input*/
+  integrate_no_input: ({ is }) => {
+    for (const move of is.shared.lu!.moves) {
+      if (move.type === "no_input") {
+        return () => ({
+          ...is,
+          private: {
+              ...is.private,
+              agenda: [{type: "ask_repeat", content: null}, ...is.private.agenda],
+          },
+        });
+      }
+    }
+  },
+
   /** TODO rule 2.7 integrate_usr_quit */
 
   /** TODO rule 2.8 integrate_sys_quit */
@@ -323,7 +338,7 @@ export const rules: Rules = {
 
   /** only for greet for now */
   select_other: ({ is }) => {
-    if (is.private.agenda[0] && is.private.agenda[0].type === "greet") {
+    if (is.private.agenda[0] && is.private.agenda[0].type === "greet" || is.private.agenda[0].type === "ask_repeat") {
       return () => ({
         ...is,
         next_moves: [ ...is.next_moves, is.private.agenda[0] as Move ]

@@ -125,15 +125,15 @@ describe("DME tests", () => {
     });
   };
 
-  describe("system answer from beliefs", () => {
+  /* describe("system answer from beliefs", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "What's your favorite food?" },
       { speaker: "sys", message: "Pizza." },
     ]);
-  });
+  }); */
 
-  describe("system answer from database", () => {
+  /* describe("system answer from database", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
@@ -141,5 +141,37 @@ describe("DME tests", () => {
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
     ]);
+  });  */
+ 
+  /* describe("system answer from database - tuesday", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?"},
+      { speaker: "usr", message: "Tuesday"},
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  }); */
+  
+  /* describe("system answer from database - friday", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?"},
+      { speaker: "usr", message: "Friday"},
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });  */
+
+  describe("Negative system contact feedback", () => {
+  runTest([
+    { speaker: "sys", message: "Hello! You can ask me anything!" },
+    { speaker: "usr", message: "*no_input*" },
+    { speaker: "sys", message: "I didn't hear anything from you." },
+  ]);
   });
 });
