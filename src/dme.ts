@@ -81,10 +81,11 @@ export const dme = setup({
           ],
         },
         SelectMove: {
-          always: [
+          always: [            
             isuTransition("SelectionDone", "select_ask"),
             isuTransition("SelectionDone", "select_answer"),
-            isuTransition("SelectionDone", "select_other"),
+            isuTransition("SelectionDone", "select_greet"),
+            isuTransition("SelectAction", "select_repeat"),
             { target: "SelectionDone" },
           ],
         },
@@ -118,7 +119,7 @@ export const dme = setup({
           },
         },
         Integrate: {
-          always: [
+          always: [            
             isuTransition("DowndateQUD", "integrate_usr_request"),
             isuTransition("DowndateQUD", "integrate_sys_ask"),
             isuTransition("DowndateQUD", "integrate_usr_ask"),

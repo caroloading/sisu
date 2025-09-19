@@ -69,13 +69,16 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
-          return () => ({
-            ...is,
-            shared: {
-              ...is.shared,
-              qud: [q, ...is.shared.qud],
-            },
-          });
+          if (!is.shared.qud.includes(q)){
+
+            return () => ({
+              ...is,
+              shared: {
+                ...is.shared,
+                qud: [q, ...is.shared.qud],
+              },
+            });
+          }
         }
       }
     }
@@ -337,11 +340,24 @@ export const rules: Rules = {
   },
 
   /** only for greet for now */
-  select_other: ({ is }) => {
-    if (is.private.agenda[0] && is.private.agenda[0].type === "greet" || is.private.agenda[0].type === "ask_repeat") {
+  select_greet: ({ is }) => {
+    if (is.private.agenda[0] && is.private.agenda[0].type === "greet") {
       return () => ({
         ...is,
         next_moves: [ ...is.next_moves, is.private.agenda[0] as Move ]
+      });
+    }
+  },
+
+  select_repeat: ({ is }) => {
+    if (is.private.agenda[0] && is.private.agenda[0].type === "ask_repeat") {
+      return () => ({
+        ...is,
+        next_moves: [ ...is.next_moves, is.private.agenda[0] as Move ],
+        private: {
+          ...is.private,
+          agenda: is.private.agenda.slice(1)
+        }
       });
     }
   },
