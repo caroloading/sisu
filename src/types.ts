@@ -8,7 +8,6 @@ export type Domain = {
   individuals: Individuals; // Mapping from individual to sort
 };
 
-
 export type PlanInfo = {
   type: "action" | "issue";
   content: null | Proposition | ShortAnswer | Question;
@@ -56,7 +55,7 @@ export type Action = {
     | "findout"
     | "consultDB";
   content: null | Question;
-}
+};
 
 type Speaker = "usr" | "sys";
 

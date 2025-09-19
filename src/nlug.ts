@@ -77,7 +77,7 @@ export function nlg(moves: Move[]): string {
     }
     throw new Error(`Failed to generate move ${JSON.stringify(move)}`);
   }
-  const utterance = moves.map(generateMove).join(' ');
+  const utterance = moves.map(generateMove).join(" ");
   console.log("generated utterance:", utterance);
   return utterance;
 }
